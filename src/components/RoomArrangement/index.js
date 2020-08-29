@@ -22,64 +22,64 @@ import { Button } from '@material-ui/core';
 const Setanta =
   [
     [
-      { number: 7, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 7, floor: 1, a: false, occupied: false, users: [], total: 0 },
-      { number: 5, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 5, floor: 1, a: false, occupied: false, users: [], total: 0 },
-      { number: 1, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 1, floor: 1, a: false, occupied: false, users: [], total: 0 },
-      { number: 3, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 3, floor: 1, a: false, occupied: false, users: [], total: 0 }
-    ],
-    [
-      { number: 8, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 8, floor: 1, a: false, occupied: false, users: [], total: 0 },
-      { number: 6, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 6, floor: 1, a: false, occupied: false, users: [], total: 0 },
+      { number: 4, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 4, floor: 1, a: false, occupied: false, users: [], total: 0 },
       { number: 2, floor: 1, a: true, occupied: false, users: [], total: 0 },
       { number: 2, floor: 1, a: false, occupied: false, users: [], total: 0 },
-      { number: 4, floor: 1, a: true, occupied: false, users: [], total: 0 },
-      { number: 4, floor: 1, a: false, occupied: false, users: [], total: 0 }
+      { number: 6, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 6, floor: 1, a: false, occupied: false, users: [], total: 0 },
+      { number: 8, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 8, floor: 1, a: false, occupied: false, users: [], total: 0 }
     ],
     [
-      { number: 15, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 15, floor: 2, a: false, occupied: false, users: [], total: 0 },
-      { number: 13, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 13, floor: 2, a: false, occupied: false, users: [], total: 0 },
-      { number: 9, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 9, floor: 2, a: false, occupied: false, users: [], total: 0 },
-      { number: 11, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 11, floor: 2, a: false, occupied: false, users: [], total: 0 }
+      { number: 3, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 3, floor: 1, a: false, occupied: false, users: [], total: 0 },
+      { number: 1, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 1, floor: 1, a: false, occupied: false, users: [], total: 0 },
+      { number: 5, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 5, floor: 1, a: false, occupied: false, users: [], total: 0 },
+      { number: 7, floor: 1, a: true, occupied: false, users: [], total: 0 },
+      { number: 7, floor: 1, a: false, occupied: false, users: [], total: 0 }
     ],
     [
-      { number: 16, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 16, floor: 2, a: false, occupied: false, users: [], total: 0 },
-      { number: 14, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 14, floor: 2, a: false, occupied: false, users: [], total: 0 },
+      { number: 12, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 12, floor: 2, a: false, occupied: false, users: [], total: 0 },
       { number: 10, floor: 2, a: true, occupied: false, users: [], total: 0 },
       { number: 10, floor: 2, a: false, occupied: false, users: [], total: 0 },
-      { number: 12, floor: 2, a: true, occupied: false, users: [], total: 0 },
-      { number: 12, floor: 2, a: false, occupied: false, users: [], total: 0 }
+      { number: 14, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 14, floor: 2, a: false, occupied: false, users: [], total: 0 },
+      { number: 16, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 16, floor: 2, a: false, occupied: false, users: [], total: 0 }
     ],
     [
-      { number: 23, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 23, floor: 3, a: false, occupied: false, users: [], total: 0 },
-      { number: 21, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 21, floor: 3, a: false, occupied: false, users: [], total: 0 },
-      { number: 17, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 17, floor: 3, a: false, occupied: false, users: [], total: 0 },
-      { number: 19, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 19, floor: 3, a: false, occupied: false, users: [], total: 0 }
+      { number: 11, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 11, floor: 2, a: false, occupied: false, users: [], total: 0 },
+      { number: 9, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 9, floor: 2, a: false, occupied: false, users: [], total: 0 },
+      { number: 13, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 13, floor: 2, a: false, occupied: false, users: [], total: 0 },
+      { number: 15, floor: 2, a: true, occupied: false, users: [], total: 0 },
+      { number: 15, floor: 2, a: false, occupied: false, users: [], total: 0 }
     ],
     [
-      { number: 24, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 24, floor: 3, a: false, occupied: false, users: [], total: 0 },
-      { number: 22, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 22, floor: 3, a: false, occupied: false, users: [], total: 0 },
+      { number: 20, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 20, floor: 3, a: false, occupied: false, users: [], total: 0 },
       { number: 18, floor: 3, a: true, occupied: false, users: [], total: 0 },
       { number: 18, floor: 3, a: false, occupied: false, users: [], total: 0 },
-      { number: 20, floor: 3, a: true, occupied: false, users: [], total: 0 },
-      { number: 20, floor: 3, a: false, occupied: false, users: [], total: 0 }
+      { number: 22, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 22, floor: 3, a: false, occupied: false, users: [], total: 0 },
+      { number: 24, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 24, floor: 3, a: false, occupied: false, users: [], total: 0 }
+    ],
+    [
+      { number: 19, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 19, floor: 3, a: false, occupied: false, users: [], total: 0 },
+      { number: 17, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 17, floor: 3, a: false, occupied: false, users: [], total: 0 },
+      { number: 21, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 21, floor: 3, a: false, occupied: false, users: [], total: 0 },
+      { number: 23, floor: 3, a: true, occupied: false, users: [], total: 0 },
+      { number: 23, floor: 3, a: false, occupied: false, users: [], total: 0 }
     ]
   ]
 
