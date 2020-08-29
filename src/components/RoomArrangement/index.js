@@ -267,7 +267,7 @@ class RoomArrangementPage extends Component {
     return this.fib(n - 1) + this.fib(n - 2);
   }
   OrielTable = () => (
-    <table style={{ width: "2000px" }}>
+    <table style={{ width: "2500px" }}>
       <thead>
         <tr>
           <th colSpan="8">Oriel</th>
@@ -328,7 +328,7 @@ class RoomArrangementPage extends Component {
 
   SetantaTable = () => {
     return (
-      <table style={{ width: "200px" }}>
+      <table style={{ width:  "2500px"  }}>
         <thead>
           <tr>
             <th colSpan="8">Setanta</th>
@@ -345,19 +345,19 @@ class RoomArrangementPage extends Component {
             if (index == 0 || index == 1) {
               itemRows = [
                 <tr onClick={clickCallback} key={"setanta-data-1" + index}>
-                  <td colSpan="8"><strong>Floor 1</strong>{ this.state.expandedRowsOriel.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsOriel.includes(index)&& <ChevronLeftIcon/>}</td>
+                  <td colSpan="8"><strong>Floor 1</strong>{ this.state.expandedRowsSetanta.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsSetanta.includes(index)&& <ChevronLeftIcon/>}</td>
                 </tr>
               ];
             } else if (index == 2 || index == 3) {
               itemRows = [
                 <tr onClick={clickCallback} key={"setanta-data-2" + index}>
-                  <td colSpan="8"><strong>Floor 2</strong>{ this.state.expandedRowsOriel.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsOriel.includes(index)&& <ChevronLeftIcon/>}</td>
+                  <td colSpan="8"><strong>Floor 2</strong>{ this.state.expandedRowsSetanta.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsSetanta.includes(index)&& <ChevronLeftIcon/>}</td>
                 </tr>
               ];
             } else {
               itemRows = [
                 <tr onClick={clickCallback} key={"setanta-row-data-3" + index}>
-                  <td colSpan="8"><strong>Floor 3</strong>{ this.state.expandedRowsOriel.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsOriel.includes(index)&& <ChevronLeftIcon/>}</td>
+                  <td colSpan="8"><strong>Floor 3</strong>{ this.state.expandedRowsSetanta.includes(index)&& <ExpandMoreIcon/>} {!this.state.expandedRowsSetanta.includes(index)&& <ChevronLeftIcon/>}</td>
                 </tr>
               ];
             }
