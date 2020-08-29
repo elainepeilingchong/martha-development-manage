@@ -161,8 +161,8 @@ class RoomArrangementPage extends Component {
       unassigned: [],
       expandedRowsOriel: [0, 1, 2, 3, 4, 5],
       expandedRowsSetanta: [0, 1, 2, 3, 4, 5],
-      userEditNumber: new Map()
-
+      userEditNumber: new Map(),
+      userEditRequest: new Map()
     };
   }
 
@@ -175,6 +175,8 @@ class RoomArrangementPage extends Component {
     this.props.firebase.tenants().on('value', snapshot => {
       const tenantsObject = snapshot.val();
       let editBoolean = new Map();
+      let editRequest = new Map();
+
       if (tenantsObject) {
         const tenantsList = new Map();
         Object.keys(tenantsObject).forEach((key, index) => {
@@ -184,12 +186,15 @@ class RoomArrangementPage extends Component {
               uid: key,
             })
           editBoolean.set(key, false);
+          editRequest.set(key, false);
+
         });
 
         this.setState({
           tenants: tenantsList,
           loading: false,
-          userEditNumber: editBoolean
+          userEditNumber: editBoolean,
+          userEditRequest: editRequest
         });
         this.roomGenerateUsers(tenantsList, Setanta);
 
@@ -262,7 +267,7 @@ class RoomArrangementPage extends Component {
     return this.fib(n - 1) + this.fib(n - 2);
   }
   OrielTable = () => (
-    <table style={{ width: "100%" }}>
+    <table style={{ width: "2000px" }}>
       <thead>
         <tr>
           <th colSpan="8">Oriel</th>
@@ -323,7 +328,7 @@ class RoomArrangementPage extends Component {
 
   SetantaTable = () => {
     return (
-      <table style={{ width: "100%" }}>
+      <table style={{ width: "200px" }}>
         <thead>
           <tr>
             <th colSpan="8">Setanta</th>
@@ -388,6 +393,7 @@ class RoomArrangementPage extends Component {
     const values = Array.from(tenants.values());
     const assigned = values.filter(t => t.allocated);
     const unassigned = values.filter(t => !t.allocated);
+    console.log(values);
     this.setState({
       assigned: assigned,
       unassigned: unassigned
@@ -421,7 +427,38 @@ class RoomArrangementPage extends Component {
       })
     })
   }
+onChangeRequest  = (event, tenant)=>{
 
+  const { tenants = new Map() } = this.state;
+  let t = tenants.get(tenant.uid);
+  t.request = event.target.value;
+  tenants.set(tenant.uid, t);
+  this.setState({ tenants: tenants })
+
+}
+  editRequest = (tenant)=>{
+    const { userEditRequest = new Map() } = this.state;
+    if (userEditRequest.get(tenant.uid)) {
+
+      this.props.firebase.tenant(tenant.uid).set(
+        {
+          name: tenant.name,
+          number: tenant.number,
+          a: tenant.a,
+          allocated: tenant.allocated,
+          request: tenant.request
+        }
+      ).catch(error => {
+        this.setState({ error });
+      });
+    }
+    const temp = userEditRequest;
+    temp.set(tenant.uid, !userEditRequest.get(tenant.uid));
+
+    this.setState({
+      userEditRequest: temp
+    });
+  }
   editNumber = (tenant) => {
     const { userEditNumber = new Map() } = this.state;
     if (userEditNumber.get(tenant.uid)) {
@@ -458,6 +495,11 @@ class RoomArrangementPage extends Component {
       this.editNumber(tenant);
     }
   }
+  onKeyDownChangeRequest = (event,tenant)=>{
+    if (event.key === 'Enter') {
+      this.editRequest(tenant);
+    }
+  }
   onChangeNumber = (event, tenant) => {
  
     const { tenants = new Map() } = this.state;
@@ -482,17 +524,24 @@ class RoomArrangementPage extends Component {
   }
   renderDrag = (tenant) => {
     const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
-    const { userEditNumber = new Map() } = this.state;
+    const { userEditNumber = new Map(), userEditRequest = new Map() } = this.state;
 
     return <Draggable  {...dragHandlers} key={tenant.uid}>
       <div className="box" style={{ display: 'flex', flexDirection: 'column' }}>
-        <strong className="cursor"><div>{tenant.name}</div></strong>
+  <strong className="cursor"><div>{tenant.name}({tenant.scholarship? 'yes': "no"})</div></strong>
         <div style={{ overflow: 'scroll' }}>
           <div style={{ background: 'yellow', whiteSpace: 'pre-wrap' }}>
-          <Button color="primary" variant="contained" onClick={(e)=>this.clearStatus(tenant)} style={{padding: '5px'}}>clear</Button>
-            <p>Details: {tenant.request}</p>
-            {userEditNumber.has(tenant.uid) && !userEditNumber.get(tenant.uid) && <button onDoubleClick={(e) => this.editNumber(tenant)}>No: {tenant.number} </button>}
-            {userEditNumber.has(tenant.uid) && userEditNumber.get(tenant.uid) && <div><input type="number" id={tenant.uid + '-number'} name={tenant.uid + '-number'} value={tenant.number} style={{ width: "60%" }} onChange={(e) => this.onChangeNumber(e, tenant)} min="0" onKeyDown={(e)=>this.onKeyDownChangeNumber(e,tenant)}/>
+            <p>
+            {tenant.nationality}
+            <br/>
+            {!userEditRequest.get(tenant.uid) &&  <button type="button" onDoubleClick={(e) => this.editRequest(tenant)}>Details: {tenant.request} </button>}
+            {userEditRequest.get(tenant.uid)&&  <div><input type="text" id={tenant.uid + '-text'} name={tenant.uid + '-text'} value={tenant.request} style={{ width: "60%" }} onChange={(e) => this.onChangeRequest(e, tenant)}  onKeyDown={(e)=>this.onKeyDownChangeRequest(e,tenant)}/>
+            <button onClick={(e) => this.editRequest(tenant)}>s</button></div>}
+
+            </p>
+            
+            {!userEditNumber.get(tenant.uid) && <button onDoubleClick={(e) => this.editNumber(tenant)}>No: {tenant.number} </button>}
+            {userEditNumber.get(tenant.uid) && <div><input type="number" id={tenant.uid + '-number'} name={tenant.uid + '-number'} value={tenant.number} style={{ width: "60%" }} onChange={(e) => this.onChangeNumber(e, tenant)} min="0" onKeyDown={(e)=>this.onKeyDownChangeNumber(e,tenant)}/>
               <button onClick={(e) => this.editNumber(tenant)}>s</button></div>}
             <br />
             <label htmlFor="a">A: </label>
@@ -501,6 +550,7 @@ class RoomArrangementPage extends Component {
             <label htmlFor="b">B: </label>
 
             <input type="checkbox" id="b" name="b" value="B" defaultChecked={!tenant.a} onClick={(e) => this.onChangeBooleanA(tenant)} />
+          <Button color="primary" variant="contained" onClick={(e)=>this.clearStatus(tenant)} style={{padding: '5px'}}>clear</Button>
 
           </div>
         </div>

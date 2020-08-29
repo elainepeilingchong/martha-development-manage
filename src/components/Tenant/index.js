@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
 import { v4 as uuidv4 } from 'uuid';
+import { Divider } from '@material-ui/core';
 
 class TenantPage extends Component {
     constructor(props) {
@@ -9,8 +10,11 @@ class TenantPage extends Component {
 
         this.state = {
             name: "",
+            request: "",
+            nationality: "",
             loading: false,
             tenants: [],
+            scholarship: false
         };
     }
     componentWillUnmount() {
@@ -42,7 +46,8 @@ class TenantPage extends Component {
 
     addTenant = event => {
         event.preventDefault();
-        const { name } = this.state;
+        const { name, request, nationality, scholarship } = this.state;
+        console.log(scholarship);
         this.props.firebase
             .tenant(uuidv4())
             .set({
@@ -50,7 +55,9 @@ class TenantPage extends Component {
                 number: 0,
                 a: false,
                 allocated: false,
-                request: ""
+                request: request,
+                nationality: nationality,
+                scholarship: scholarship
             })
             .catch(error => {
                 this.setState({ error });
@@ -84,7 +91,10 @@ class TenantPage extends Component {
             name,
             error,
             tenants,
-            loading
+            loading,
+            nationality,
+            request,
+            scholarship
         } = this.state;
 
         return (
@@ -98,9 +108,23 @@ class TenantPage extends Component {
                         placeholder="Full Name"
                     />
 
+                    <Divider />
+                    <input
+                        name="nationality"
+                        value={nationality}
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="Nationality"
+                    />
 
+                    <Divider />
+                    <textarea id="request" name="request" rows="4" cols="50" onChange={this.onChange}>
+                    </textarea>
+
+                    <Divider />
+                    <label htmlFor="a">Scholarship: </label>
+                    <input type="checkbox" id="scholarship" name="scholarship" value="true" defaultChecked={scholarship} onClick={() => this.setState({scholarship:!scholarship})} /><br />
                     <button type="submit">Add</button>
-
                     {error && <p>{error.message}</p>}
                 </form>
                 <h1>Tenant</h1>
