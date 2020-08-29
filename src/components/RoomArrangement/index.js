@@ -528,7 +528,7 @@ onChangeRequest  = (event, tenant)=>{
 
     return <Draggable  {...dragHandlers} key={tenant.uid}>
       <div className="box" style={{ display: 'flex', flexDirection: 'column' }}>
-  <strong className="cursor"><div>{tenant.name}({tenant.scholarship? 'yes': "no"})</div></strong>
+  <strong className="cursor"><div>{tenant.name}({tenant.scholarship? 'yes': "no"}){tenant.quarantine? "(Q)": ""}</div></strong>
         <div style={{ overflow: 'scroll' }}>
           <div style={{ background: 'yellow', whiteSpace: 'pre-wrap' }}>
             <p>
